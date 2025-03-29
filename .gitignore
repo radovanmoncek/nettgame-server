@@ -21,3 +21,28 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+replay_pid*
+
+# Anything from the target dir
+target
+
+# .idea dir
+.idea
+
+# MANIFEST.MF
+MANIFEST.MF
+
+#.env
+.env
+
+#.iml
+*.iml
+
+#.properties
+*.properties
+
+#.xml
+cz.radovanmoncek.ship.util.reflection.ReflectionUtilities.log4j2.xml
+
+#.exe
+*.exe
