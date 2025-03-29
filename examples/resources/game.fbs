@@ -1,0 +1,41 @@
+//Thanks to: https://flatbuffers.dev/tutorial/
+
+namespace cz.radovanmoncek.ship.tables;
+
+enum GameStatus:byte {START_SESSION, STOP_SESSION, JOIN_SESSION, STATE_CHANGE, INVALID_STATE}
+
+enum Character:byte {BLUE, RED}
+
+struct Position {
+    x:float;
+    y:float;
+    rotation:int;
+}
+
+///The Player entity
+table Player {
+    position:Position;
+    name:string;
+    character:Character;
+}
+
+///Game metadata
+table GameMetadata {
+    game_status:GameStatus;
+    game_code:string;
+    length:long;
+}
+
+///Reponse to players
+table GameState {
+    game_metadata:GameMetadata;
+    players:[Player];
+    bullets:[Position];
+}
+
+///Request from players
+table Request {
+    player:Player;
+    game_code:string;
+    game_status:GameStatus;
+}
