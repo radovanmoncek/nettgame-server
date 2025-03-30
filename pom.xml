@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>cz.radovanmoncek</groupId>
-    <artifactId>nettgame</artifactId>
+    <artifactId>nettgame_server</artifactId>
     <version>1.0</version>
 
     <properties>
@@ -13,12 +13,33 @@
         <maven.compiler.target>21</maven.compiler.target>
     </properties>
 
+    <!--https://stackoverflow.com/questions/4955635/how-to-add-local-jar-files-to-a-maven-project/22300875#22300875-->
+    <!--https://stackoverflow.com/questions/5692256/maven-best-way-of-linking-custom-external-jar-to-my-project-->
+    <repositories>
+        <repository>
+            <id>internal</id>
+            <name>internal-repository</name>
+            <url>file://${project.basedir}\libs</url>
+        </repository>
+    </repositories>
+
     <dependencies>
         <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-engine -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
             <version>5.12.0</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.junit.platform/junit-platform-suite -->
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-suite</artifactId>
+            <version>1.12.0</version>
+        </dependency>
+        <dependency>
+            <groupId>cz.radovanmoncek</groupId>
+            <artifactId>nettgame</artifactId>
+            <version>0.1</version>
         </dependency>
     </dependencies>
 </project>
