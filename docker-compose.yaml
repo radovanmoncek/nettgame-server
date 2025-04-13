@@ -1,0 +1,43 @@
+#https://linuxhandbook.com/docker-push-repo/
+#https://docs.docker.com/reference/cli/docker/container/create/
+version: "1.0"
+
+services:
+  nettgame-server:
+    container_name: "nettgame-server"
+    image: radovanmoncek/nettgame-server:latest
+#    build:
+#      context: ./
+#      dockerfile: nettgame-server.dockerfile
+    expose:
+      - "4321"
+    ports:
+      - "4321:4321"
+    depends_on:
+      - nettgame-server-data
+    networks:
+      - game-server-internal-network
+    environment:
+      - DATABASE_URL
+      - MYSQL_ROOT_PASSWORD
+      - HIBERNATE_DB_USER
+      - LOG_LEVEL
+
+  nettgame-server-data:
+    container_name: "nettgame-server-data"
+    image: mysql:8.0
+    environment:
+      - MYSQL_ROOT_PASSWORD
+    volumes:
+      - game-server-persistent-data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    networks:
+      - game-server-internal-network
+
+volumes:
+  game-server-persistent-data:
+
+networks:
+  game-server-internal-network:
+    driver: bridge
