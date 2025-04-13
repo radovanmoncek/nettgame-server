@@ -1,11 +1,14 @@
+#https://linuxhandbook.com/docker-push-repo/
+#https://docs.docker.com/reference/cli/docker/container/create/
 version: "1.0"
 
 services:
   nettgame-server:
     container_name: "nettgame-server"
-    build:
-      context: ./
-      dockerfile: nettgame-server.dockerfile
+    image: radovanmoncek/nettgame-server:latest
+#    build:
+#      context: ./
+#      dockerfile: nettgame-server.dockerfile
     expose:
       - "4321"
     ports:
