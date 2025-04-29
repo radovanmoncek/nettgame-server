@@ -34,4 +34,4 @@ is an example game server built upon my Nettgame game server framework.
 
 #### UML class diagram
 
-![UML class diagram of the nettgame example server](https://github.com/nettgame-server/blob/development/design/Nettgame_server_class_diagram.png)
+![UML class diagram of the nettgame example server](https://github.com/radovanmoncek/nettgame-server/blob/development/design/Nettgame_server_class_diagram.png)
