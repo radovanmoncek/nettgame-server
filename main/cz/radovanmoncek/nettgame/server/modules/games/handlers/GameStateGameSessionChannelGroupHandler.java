@@ -29,6 +29,7 @@ public class GameStateGameSessionChannelGroupHandler extends GameSessionChannelG
     public static final int X_BOUND = 800,
                             Y_BOUND = 600,
                             MOVE_DELTA = 2;
+    public static final AttributeKey<Integer> PLAYER_LAST_STATE_CHECKSUM_ATTRIBUTE = AttributeKey.valueOf("playerLastStateChecksum");
 
     private static final Logger logger = Logger.getLogger(GameStateGameSessionChannelGroupHandler.class.getName());
 

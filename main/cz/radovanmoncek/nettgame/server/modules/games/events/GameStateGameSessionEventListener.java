@@ -25,7 +25,7 @@ import java.util.logging.Logger;
 import static cz.radovanmoncek.nettgame.server.modules.games.handlers.GameStateGameSessionChannelGroupHandler.*;
 
 public class GameStateGameSessionEventListener implements GameSessionEventListener {
-
+    
     private static final Logger logger = Logger.getLogger(GameStateGameSessionEventListener.class.getName());
 
     private final UUID gameUUID;
@@ -145,7 +145,7 @@ public class GameStateGameSessionEventListener implements GameSessionEventListen
                 .accept(context);
 
         context.performOnAllConnections(playerChannel -> {
-
+	   
             final var currentPlayerState = playerChannel
                     .attr(PLAYER_POSITION_ATTRIBUTE)
                     .get();
@@ -159,17 +159,17 @@ public class GameStateGameSessionEventListener implements GameSessionEventListen
                 return;
             }
 
-            currentGameStateSum.set(currentGameStateSum.addAndGet(Arrays.stream(currentPlayerState).sum()));
-        });
+	    final var lastPlayerStateSum = playerChannel
+		.attr(PLAYER_LAST_STATE_CHECKSUM_ATTRIBUTE)
+		.get();
+	    
+	    playerChannel
+		.attr(PLAYER_LAST_STATE_CHECKSUM_ATTRIBUTE)
+		.set(Integer.hashCode(currentPlayerState[0] + currentPlayerState[1]));
 
-        if (currentGameStateSum.get() < 0 || lastGameHash == Integer.hashCode(currentGameStateSum.get())) {
-
-            return;
-        }
-
-        lastGameHash = Integer.hashCode(currentGameStateSum.get());
-
-        sendGameStateToOrderedPlayerChannels(GameStatus.STATE_CHANGE, context);
+	    if (lastPlayerStateSum != null && lastPlayerStateSum != Integer.hashCode(currentPlayerState[0] + currentPlayerState[1]))    
+		sendGameStateToOrderedPlayerChannels(GameStatus.STATE_CHANGE, context);
+	});
     }
 
     @Override
