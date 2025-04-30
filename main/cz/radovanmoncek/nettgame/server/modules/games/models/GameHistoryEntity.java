@@ -4,6 +4,12 @@ import jakarta.persistence.*;
 
 import java.sql.Timestamp;
 
+/**
+ * Represents a game that transpired in the past.
+ * @apiNote inspired by https://www.yegor256.com/2016/07/06/data-transfer-object.html
+ * @author Radovan Monček
+ * @since 1.0
+ */
 @Entity
 @Table(name = "GameHistories")
 public class GameHistoryEntity {

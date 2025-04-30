@@ -9,6 +9,9 @@ import java.util.Objects;
 
 /**
  * "Band-aid" class for FlatBuffers Schema.
+ * @apiNote inspired by https://www.yegor256.com/2016/07/06/data-transfer-object.html
+ * @author Radovan Monček
+ * @since 1.0
  */
 public class GameStateFlatBuffersSerializable implements FlatBufferSerializable {
     private final int[][] playerPositions;
