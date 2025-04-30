@@ -97,7 +97,7 @@ public class GameStateServerTickTask implements Consumer<GameSessionContext> {
                     final var xDelta = Math.abs(gameStateRequest.player().position().x() - currentPlayerState[0]);
                     final var yDelta = Math.abs(gameStateRequest.player().position().y() - currentPlayerState[1]);
 
-                    if ((xDelta != MOVE_DELTA && xDelta != 0) || (yDelta != 0 && yDelta != MOVE_DELTA)) {
+                    if ((xDelta != MOVE_DELTA && xDelta != 0) || (yDelta != 0 && yDelta != MOVE_DELTA) || (xDelta == 0 && yDelta == 0)) {
 
                         return;
                     }
@@ -106,6 +106,8 @@ public class GameStateServerTickTask implements Consumer<GameSessionContext> {
                             .attr(PLAYER_POSITION_ATTRIBUTE)
                             .set(new int[]{(int) gameStateRequest.player().position().x(), (int) gameStateRequest.player().position().y(), gameStateRequest.player().position().rotation()});
 
+		    logger.info("Player position updated");
+		    
                     i.set(i.incrementAndGet());
                 }
             }
